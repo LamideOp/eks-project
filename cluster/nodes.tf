@@ -2,7 +2,7 @@
 data "terraform_remote_state" "network" {
   backend = "local"
   config = {
-    path = "../vpc/terraform.tfstate"
+    path = "../vpc/terraform.tfstate.d/dev/terraform.tfstate"
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_eks_node_group" "private-nodes" {
   labels = {
     role = "general"
   }
-# This tags are important if we are going to use an auto-scaler
+  # This tags are important if we are going to use an auto-scaler
   tags = {
     "k8s.io/cluster-autoscaler/demo"    = "owned"
     "k8s.io/cluster-autoscaler/enabled" = true

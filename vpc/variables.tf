@@ -14,5 +14,5 @@ variable "public_cidr" {
 
 variable "vpc_name" {
   type    = string
-  default = "eks-vpc" 
+  default = "eks-vpc"
 }

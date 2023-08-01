@@ -5,9 +5,9 @@
 
 #1. Create VPC
 resource "aws_vpc" "main" {
-  cidr_block            = "10.0.0.0/16"
-  enable_dns_hostnames  = true
-  enable_dns_support    = true
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
   tags = {
     Name = var.vpc_name
@@ -56,7 +56,7 @@ resource "aws_subnet" "private" {
 
   tags = {
     "Name"                            = "private"
-    "kubernetes.io/role/internal-elb"          = "1"
+    "kubernetes.io/role/internal-elb" = "1"
     "kubernetes.io/cluster/demo"      = "owned"
   }
 }
@@ -80,7 +80,7 @@ resource "aws_subnet" "public" {
 #7. Create private route table
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
-  
+
   depends_on = [aws_subnet.private]
 
   tags = {
@@ -105,7 +105,7 @@ resource "aws_route" "public_internet_gateway" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.igw.id
-  
+
   depends_on = [aws_route_table.public]
 }
 

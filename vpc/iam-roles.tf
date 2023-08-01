@@ -3,15 +3,15 @@
 
 locals {
   node_policies = [
-   "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
-   "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
-   "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
-   "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+    "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+    "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   ]
 
   eks_policies = [
-   "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
-   "arn:aws:iam::aws:policy/AmazonEKSServicePolicy" 
+    "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+    "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
   ]
 }
 
@@ -59,7 +59,7 @@ resource "aws_iam_role" "demo" {
 }
 
 resource "aws_iam_role_policy_attachment" "demo-EKSClusterPermission" {
-  for_each = toset(local.eks_policies)
+  for_each   = toset(local.eks_policies)
   policy_arn = each.value
   role       = aws_iam_role.demo.name
 }
