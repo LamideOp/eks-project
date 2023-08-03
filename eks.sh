@@ -9,7 +9,7 @@ terraform plan
 terraform apply --auto-approve
 sleep 5
 
-# spin up eks cluster and setup oidc
+# spin up eks cluster and setup oidc and create role for CAS
 cd ../cluster
 terraform fmt
 terraform init
@@ -20,5 +20,5 @@ terraform apply --auto-approve
 aws eks --region us-east-1 update-kubeconfig --name demo
 
 #deploy service account with oidc role attached
-cd ../../oidc
-kubectl apply -f .
+#cd ../../oidc
+#kubectl apply -f .
