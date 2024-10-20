@@ -1,14 +1,14 @@
 
 # EKS Cluster Provisioning Repository
 
-This repository contains Terraform scripts and configuration files to automate the provisioning of an Amazon EKS (Elastic Kubernetes Service) cluster along with the required VPC setup and IAM configurations. The process is managed using a Bash script (`eks.sh`) to streamline the deployment across multiple stages.
+This repository contains Terraform scripts and configuration files to automate the provisioning of an Amazon EKS (Elastic Kubernetes Service) cluster along with the required VPC setup, cluster auto scaler (CAS) and IAM configurations. The process is managed using a Bash script (`eks.sh`) to streamline the deployment across multiple stages.
 
 ## Repository Structure
 
 The repository is organized into the following directories:
 
 - **`vpc/`**: Contains Terraform configurations for setting up the Virtual Private Cloud (VPC) that will host the EKS cluster. This includes subnets, route tables, and other networking resources.
-- **`cluster/`**: Contains Terraform scripts for provisioning the EKS cluster and setting up OpenID Connect (OIDC) integration, as well as creating IAM roles needed for cluster access and service accounts.
+- **`cluster/`**: Contains Terraform scripts for provisioning the EKS cluster, deploying cluster auto scaler and setting up OpenID Connect (OIDC) integration, as well as creating IAM roles needed for cluster access and service accounts.
 - **`oidc/`** (commented out in the script): Intended for deploying service accounts with associated OIDC roles using Kubernetes manifests.
 
 ## Deployment Steps
@@ -28,7 +28,7 @@ To provision the infrastructure, follow these steps:
 
    This script will:
    - Navigate to the `vpc` directory and provision the VPC using Terraform.
-   - Move to the `cluster` directory to create the EKS cluster, set up OIDC, and configure IAM roles.
+   - Move to the `cluster` directory to create the EKS cluster, install cluster auto scaler, set up OIDC, and configure IAM roles.
    - Update the kubeconfig file to allow interaction with the EKS cluster using `kubectl`.
 
 3. **(Optional) Deploy OIDC Service Account:**
